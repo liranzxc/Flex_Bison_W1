@@ -30,7 +30,7 @@ WhiteSpaces             [\r\t\f\v ]+
 {first_year}  { printf("found first year %s \n " ,yytext);  yylval.year_number = 1; return YEAR_NUMBER;}
 {second_year}  { printf("found second year %s \n" ,yytext);  yylval.year_number = 2; return YEAR_NUMBER;}
 ";"    		   {return SEMICOLON; }
-{subject}  { printf("found subject %s \n" ,yytext);   return SUBJECT;}
+{subject}  { printf("found subject %s \n" ,yytext); strcpy(yylval.subject, yytext);  return SUBJECT;}
 {num}   {printf("found a grade %s \n " ,yytext);  yylval.ival = atoi (yytext); return NUM; }
 "?"     		   {return QUESTION; }
 ","              {return AND;}

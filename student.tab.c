@@ -70,11 +70,10 @@
   /* yylex () and yyerror() need to be declared here */
 extern int yylex (void);
 extern char * yytext;
-
 void yyerror (const char *s);
 
 /* Line 371 of yacc.c  */
-#line 78 "student.tab.c"
+#line 77 "student.tab.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -127,17 +126,17 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 12 "student.y"
+#line 11 "student.y"
 
 
    int avg_studnet;
    int avg_year_one;
    int avg_year_two;
+
    int count_s_one;
    int count_s_two;
    int ival;
 
-   int grade;
    int year_number;
    char subject[100];
 
@@ -145,7 +144,7 @@ typedef union YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 149 "student.tab.c"
+#line 148 "student.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -173,7 +172,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 177 "student.tab.c"
+#line 176 "student.tab.c"
 
 #ifdef short
 # undef short
@@ -464,8 +463,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    38,    38,    39,    40,    41,    42,    42,    43,    44,
-      45,    45
+       0,    43,    43,    44,    45,    46,    47,    48,    50,    63,
+      64,    66
 };
 #endif
 
@@ -1365,9 +1364,63 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-      
+        case 5:
 /* Line 1792 of yacc.c  */
-#line 1371 "student.tab.c"
+#line 46 "student.y"
+    { printf("Student Year %d  , sum of grades %d \n",(yyvsp[(2) - (4)].ival),(yyvsp[(3) - (4)].ival)); }
+    break;
+
+  case 6:
+/* Line 1792 of yacc.c  */
+#line 47 "student.y"
+    {(yyval.ival) = (yyvsp[(3) - (4)].ival);}
+    break;
+
+  case 7:
+/* Line 1792 of yacc.c  */
+#line 48 "student.y"
+    {(yyval.ival) = 1; }
+    break;
+
+  case 8:
+/* Line 1792 of yacc.c  */
+#line 50 "student.y"
+    {
+   if((yyvsp[(3) - (3)].ival) == -1)
+   { (yyval.ival) = (yyvsp[(1) - (3)].ival); } 
+   else 
+   {
+     
+      (yyval.ival) = (yyvsp[(1) - (3)].ival) + (yyvsp[(3) - (3)].ival);  
+     
+  }
+   
+   
+   
+   }
+    break;
+
+  case 9:
+/* Line 1792 of yacc.c  */
+#line 63 "student.y"
+    {(yyval.ival) = (yyvsp[(1) - (1)].ival);}
+    break;
+
+  case 10:
+/* Line 1792 of yacc.c  */
+#line 64 "student.y"
+    {(yyval.ival) = (yyvsp[(3) - (3)].ival);}
+    break;
+
+  case 11:
+/* Line 1792 of yacc.c  */
+#line 66 "student.y"
+    {(yyval.ival) = -1;}
+    break;
+
+
+/* Line 1792 of yacc.c  */
+#line 1424 "student.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1599,7 +1652,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 47 "student.y"
+#line 69 "student.y"
 
 int main (int argc, char **argv)
 {

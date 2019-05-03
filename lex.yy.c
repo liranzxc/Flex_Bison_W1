@@ -844,7 +844,7 @@ YY_RULE_SETUP
 case 10:
 YY_RULE_SETUP
 #line 33 "student.l"
-{ printf("found subject %s \n" ,yytext);   return SUBJECT;}
+{ printf("found subject %s \n" ,yytext); strcpy(yylval.subject, yytext);  return SUBJECT;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
