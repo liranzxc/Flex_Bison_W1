@@ -66,7 +66,7 @@
 #line 1 "student.y"
 
 #include <stdio.h>
-
+#include <string.h>
   /* yylex () and yyerror() need to be declared here */
 extern int yylex (void);
 extern char * yytext;
@@ -126,7 +126,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 11 "student.y"
+#line 19 "student.y"
 
 
    int avg_studnet;
@@ -137,6 +137,7 @@ typedef union YYSTYPE
    int count_s_two;
    int ival;
 
+   double avg;
    int year_number;
    char subject[100];
 
@@ -144,7 +145,7 @@ typedef union YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 148 "student.tab.c"
+#line 149 "student.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -172,7 +173,19 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 176 "student.tab.c"
+#line 177 "student.tab.c"
+/* Unqualified %code blocks.  */
+/* Line 391 of yacc.c  */
+#line 11 "student.y"
+
+  int count_grades=0;
+  int sum_points = 0;
+
+
+
+
+/* Line 391 of yacc.c  */
+#line 189 "student.tab.c"
 
 #ifdef short
 # undef short
@@ -463,8 +476,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    43,    43,    44,    45,    46,    47,    48,    50,    63,
-      64,    66
+       0,    52,    52,    53,    54,    55,    62,    63,    65,    79,
+      89,   109
 };
 #endif
 
@@ -1366,61 +1379,92 @@ yyreduce:
     {
         case 5:
 /* Line 1792 of yacc.c  */
-#line 46 "student.y"
-    { printf("Student Year %d  , sum of grades %d \n",(yyvsp[(2) - (4)].ival),(yyvsp[(3) - (4)].ival)); }
+#line 55 "student.y"
+    { 
+
+  printf("Studnet Year %d , Sum : %f , and sum point %d \n" ,(yyvsp[(2) - (4)].ival),(yyvsp[(3) - (4)].avg),sum_points);
+  printf("Student Year %d  , avg of grades %f \n",(yyvsp[(2) - (4)].ival),((yyvsp[(3) - (4)].avg) / sum_points));
+  count_grades = 0;
+  sum_points = 0;
+   }
     break;
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 47 "student.y"
+#line 62 "student.y"
     {(yyval.ival) = (yyvsp[(3) - (4)].ival);}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 48 "student.y"
+#line 63 "student.y"
     {(yyval.ival) = 1; }
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 50 "student.y"
+#line 65 "student.y"
     {
-   if((yyvsp[(3) - (3)].ival) == -1)
-   { (yyval.ival) = (yyvsp[(1) - (3)].ival); } 
+   if((yyvsp[(3) - (3)].ival) == -1){ (yyval.avg) = (yyvsp[(1) - (3)].avg); } 
    else 
    {
-     
-      (yyval.ival) = (yyvsp[(1) - (3)].ival) + (yyvsp[(3) - (3)].ival);  
-     
-  }
-   
+     if(count_grades < 3)
+     {
+      (yyval.avg) = (yyvsp[(1) - (3)].avg) + (yyvsp[(3) - (3)].ival);
+      count_grades = count_grades +1;
+     }
    
    
    }
+  }
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 63 "student.y"
-    {(yyval.ival) = (yyvsp[(1) - (1)].ival);}
+#line 79 "student.y"
+    {
+
+  if(count_grades < 3)
+     {
+      (yyval.avg) = (yyvsp[(1) - (1)].ival);
+      count_grades = count_grades +1;
+     }
+  }
     break;
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 64 "student.y"
-    {(yyval.ival) = (yyvsp[(3) - (3)].ival);}
+#line 89 "student.y"
+    {
+
+  if(strcmp((yyvsp[(1) - (3)].subject),"history") == 0)
+  {
+  (yyval.ival) = 3*(yyvsp[(3) - (3)].ival);
+  sum_points = sum_points + 3;
+  printf("sum_points +3 \n");
+
+
+  }
+  else
+  {
+  (yyval.ival) = 2*(yyvsp[(3) - (3)].ival);
+  sum_points = sum_points+2;
+    printf("sum_points +2 \n");
+
+  }
+  
+  }
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 66 "student.y"
+#line 109 "student.y"
     {(yyval.ival) = -1;}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1424 "student.tab.c"
+#line 1468 "student.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1652,7 +1696,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 69 "student.y"
+#line 112 "student.y"
 
 int main (int argc, char **argv)
 {
@@ -1670,6 +1714,7 @@ int main (int argc, char **argv)
   yyparse ();
   
   fclose (yyin);
+
   return 0;
 }
 

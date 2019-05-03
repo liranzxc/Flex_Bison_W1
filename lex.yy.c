@@ -809,17 +809,17 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 #line 26 "student.l"
-{printf("found S Open %s \n" ,yytext); return BEGIN_STUDENT; }
+{ return BEGIN_STUDENT; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 27 "student.l"
-{printf("found S Close %s \n" ,yytext); return END_STUDENT; }
+{ return END_STUDENT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 28 "student.l"
-{printf("found year \n"); return YEAR;}
+{ return YEAR;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -829,12 +829,12 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 30 "student.l"
-{ printf("found first year %s \n " ,yytext);  yylval.year_number = 1; return YEAR_NUMBER;}
+{   yylval.year_number = 1; return YEAR_NUMBER;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 31 "student.l"
-{ printf("found second year %s \n" ,yytext);  yylval.year_number = 2; return YEAR_NUMBER;}
+{   yylval.year_number = 2; return YEAR_NUMBER;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
@@ -844,12 +844,12 @@ YY_RULE_SETUP
 case 10:
 YY_RULE_SETUP
 #line 33 "student.l"
-{ printf("found subject %s \n" ,yytext); strcpy(yylval.subject, yytext);  return SUBJECT;}
+{  strcpy(yylval.subject, yytext);  return SUBJECT;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 34 "student.l"
-{printf("found a grade %s \n " ,yytext);  yylval.ival = atoi (yytext); return NUM; }
+{  yylval.ival = atoi (yytext); return NUM; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -864,7 +864,7 @@ YY_RULE_SETUP
 case 14:
 YY_RULE_SETUP
 #line 38 "student.l"
-{printf("found title %s \n" ,yytext);return TITLE;}
+{return TITLE;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
