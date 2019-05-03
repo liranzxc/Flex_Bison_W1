@@ -15,15 +15,12 @@ void yyerror (const char *s);
    int count_s_two=0;
    double sum_students_one = 0 ;
    double sum_students_two = 0 ;
-
-
 }
 
 /* note: no semicolon after the union */
 %union {
 
    int ival;
-
    double avg;
    int year_number;
    char subject[100];

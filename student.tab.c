@@ -126,7 +126,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 25 "student.y"
+#line 23 "student.y"
 
 
    int ival;
@@ -174,10 +174,8 @@ int yyparse ();
 
   int count_grades=0;
   int sum_points = 0;
-
    int count_s_one=0;
    int count_s_two=0;
-
    double sum_students_one = 0 ;
    double sum_students_two = 0 ;
 
@@ -185,7 +183,7 @@ int yyparse ();
 
 
 /* Line 391 of yacc.c  */
-#line 189 "student.tab.c"
+#line 187 "student.tab.c"
 
 #ifdef short
 # undef short
@@ -476,8 +474,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    52,    52,    53,    54,    55,    74,    75,    77,    91,
-     106,   129
+       0,    50,    50,    51,    52,    53,    72,    73,    75,    89,
+     104,   127
 };
 #endif
 
@@ -1379,7 +1377,7 @@ yyreduce:
     {
         case 5:
 /* Line 1792 of yacc.c  */
-#line 55 "student.y"
+#line 53 "student.y"
     { 
 
   if((yyvsp[(2) - (4)].ival) == 1 )
@@ -1403,19 +1401,19 @@ yyreduce:
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 74 "student.y"
+#line 72 "student.y"
     {(yyval.ival) = (yyvsp[(3) - (4)].ival);}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 75 "student.y"
+#line 73 "student.y"
     {(yyval.ival) = 1; }
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 77 "student.y"
+#line 75 "student.y"
     {
    if((yyvsp[(3) - (3)].ival) == -1){ (yyval.avg) = (yyvsp[(1) - (3)].avg); } 
    else 
@@ -1433,7 +1431,7 @@ yyreduce:
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 91 "student.y"
+#line 89 "student.y"
     {
 
    if((yyvsp[(1) - (1)].ival) != -1)
@@ -1451,7 +1449,7 @@ yyreduce:
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 106 "student.y"
+#line 104 "student.y"
     {
 
   if(strcmp((yyvsp[(1) - (3)].subject),"history") == 0)
@@ -1478,13 +1476,13 @@ yyreduce:
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 129 "student.y"
+#line 127 "student.y"
     {(yyval.ival) = -1;}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1488 "student.tab.c"
+#line 1486 "student.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1716,7 +1714,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 132 "student.y"
+#line 130 "student.y"
 
 int main (int argc, char **argv)
 {
