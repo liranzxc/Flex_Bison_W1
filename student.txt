@@ -1,0 +1,5 @@
+STUDENTGRADES
+<student> history: 70, Java: ?, algebra:75, physics: 100, programming languages: 90 </student>
+<student> year : freshman; Java: 70, algebra : 70,physics : 70</student>
+<student> year : sophomore; programming languages : 100,Java : 0</student>
+<student> year : second; physics : 99</student>
