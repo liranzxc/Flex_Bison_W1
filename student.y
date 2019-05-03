@@ -11,6 +11,10 @@ void yyerror (const char *s);
 {
   int count_grades=0;
   int sum_points = 0;
+   int count_s_one=0;
+   int count_s_two=0;
+   double sum_students_one = 0 ;
+   double sum_students_two = 0 ;
 
 
 }
@@ -18,12 +22,6 @@ void yyerror (const char *s);
 /* note: no semicolon after the union */
 %union {
 
-   int avg_studnet;
-   int avg_year_one;
-   int avg_year_two;
-
-   int count_s_one;
-   int count_s_two;
    int ival;
 
    double avg;
@@ -43,19 +41,31 @@ void yyerror (const char *s);
 %type <ival> optional_year
 %type <ival> grade
 %type <avg> list_of_grades
-%type <ival> student
+%type <avg> student
 
 
 /* %error-verbose */ 
 %%
 
-input: TITLE list_of_students;
+input: TITLE list_of_students ;
 list_of_students: list_of_students student;
 list_of_students: /* empty */;
 student: BEGIN_STUDENT optional_year list_of_grades END_STUDENT { 
 
-  printf("Studnet Year %d , Sum : %f , and sum point %d \n" ,$2,$3,sum_points);
-  printf("Student Year %d  , avg of grades %f \n",$2,($3 / sum_points));
+  if($2 == 1 )
+  {
+    count_s_one = count_s_one +1;
+    sum_students_one = sum_students_one + ($3 / sum_points);
+  }
+  else
+  {
+    if($2 == 2)
+    {
+      count_s_two = count_s_two + 1;
+      sum_students_two = sum_students_two + ($3 / sum_points);
+    }
+  }
+
   count_grades = 0;
   sum_points = 0;
    }; 
@@ -78,11 +88,16 @@ list_of_grades: list_of_grades AND grade {
 
 list_of_grades: grade {
 
-  if(count_grades < 3)
+   if($1 != -1)
+   {
+
+     if(count_grades < 3)
      {
       $$ = $1;
       count_grades = count_grades +1;
      }
+   }
+
   };
 
 
@@ -91,17 +106,20 @@ grade: SUBJECT EQUELS NUM {
   if(strcmp($1,"history") == 0)
   {
   $$ = 3*$3;
-  sum_points = sum_points + 3;
-  printf("sum_points +3 \n");
+  if(count_grades < 3)
+     {
+         sum_points = sum_points + 3;
+     }
 
 
   }
   else
   {
-  $$ = 2*$3;
-  sum_points = sum_points+2;
-    printf("sum_points +2 \n");
-
+    $$ = 2*$3;
+    if(count_grades < 3)
+     {
+         sum_points = sum_points + 2;
+     }
   }
   
   }
@@ -126,6 +144,11 @@ int main (int argc, char **argv)
   yyparse ();
   
   fclose (yyin);
+
+
+
+      printf("Average of first year students: %.*lf \n",1,(sum_students_one / count_s_one ));
+      printf("Average of second year students: %.*lf \n",1,(sum_students_two / count_s_two ));
 
   return 0;
 }
